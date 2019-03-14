@@ -10,7 +10,7 @@ This codebase is designed for:
 This implementation seamlessly be runs on your local machine and on hundreds of cores on AWS.
 
 ### Reproducing Results from Single Deep CFR (Steinberger 2019) [2]
-The run-script `DeepCFR/sdcfr_paper_experiment.py` launches one run of the Head-to-Head performance comparison
+The run-script `DeepCFR/paper_experiment_sdcfr_vs_deepcfr_h2h.py` launches one run of the Head-to-Head performance comparison
 between Single Deep CFR and Deep CFR as presented in [2]. We ran the experiments on an m5.12xlarge instance where
 we disabled hyper-threading. We set the instance up for distributed runs as explained in
 [PokerRL](https://github.com/TinkeringCode/PokerRL). To reproduce, you can simply clone this repository onto the
@@ -18,7 +18,7 @@ instance and start the script via
 ```
 git clone https://github.com/TinkeringCode/Deep-CFR.git
 cd Deep-CFR
-python sdcfr_paper_experiment.py
+python paper_experiment_sdcfr_vs_deepcfr_h2h.py
 ```
 and watch the results coming in at `INSTANCE_IP:8888` in your browser.
 
@@ -98,7 +98,7 @@ the tutorial in the corresponding section of [PokerRL](https://github.com/Tinker
 
 We recommend forking this repository so you can write your own scripts but still have remote access through git.
 In your run-script set either the `DISTRIBUTED` or the `CLUSTER` option of the TrainingProfile to True
-(see e.g. `DeepCFR/sdcfr_paper_experiment.py`).
+(see e.g. `DeepCFR/paper_experiment_sdcfr_vs_deepcfr_h2h.py`).
 Moreover, you should specify the number of `LearnerActor` and evaluator workers (if applicable) you want to deploy.
 Note that hyperparmeters ending with "_per_la" (e.g. the batch size) are effectively multiplied by the number of
 workers. 

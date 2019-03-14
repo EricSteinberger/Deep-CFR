@@ -69,5 +69,9 @@ if __name__ == '__main__':
                                          ),
                   # Evaluate Head-to-Head every 15 iterations of both players (= every 30 alternating iterations)
                   eval_methods={"h2h": 15},
-                  n_iterations=None)
+
+                  # 150 = 300 when 2 viewing alternating iterations as 2 (as usually done).
+                  # This repo implements alternating iters as a single iter, which is why this says 150.
+                  n_iterations=150,
+                  )
     ctrl.run()
