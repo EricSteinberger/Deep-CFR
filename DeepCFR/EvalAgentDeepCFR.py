@@ -4,6 +4,7 @@
 import copy
 
 import numpy as np
+from PokerRL.game import Poker
 from PokerRL.game._.tree._.nodes import PlayerActionNode
 from PokerRL.rl import rl_util
 from PokerRL.rl.base_cls.EvalAgentBase import EvalAgentBase as _EvalAgentBase
@@ -297,6 +298,17 @@ class EvalAgentDeepCFR(_EvalAgentBase):
             return action, a_probs_all_hands
         else:
             raise UnknownModeError(self._mode)
+
+    def get_action_frac_tuple(self, step_env):
+        a_idx_raw = self.get_action(step_env=step_env, need_probs=False)[0]
+
+        if self.env_bldr.env_cls.IS_FIXED_LIMIT_GAME:
+            return a_idx_raw, -1
+        else:
+            if a_idx_raw >= 2:
+                frac = self.env_bldr.env_args.bet_sizes_list_as_frac_of_pot[a_idx_raw - 2]
+                return [Poker.BET_RAISE, frac]
+            return [a_idx_raw, -1]
 
     def update_weights(self, weights_for_eval_agent):
 
